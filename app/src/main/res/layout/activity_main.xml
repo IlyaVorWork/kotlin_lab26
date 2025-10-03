@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <androidx.camera.view.PreviewView
+            android:id="@+id/pvPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"/>
+
+    <ImageButton
+            android:id="@+id/ibCapture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/round_corners"
+            android:src="@drawable/photo_camera_48px"
+            android:padding="@dimen/padding"
+            app:tint="@color/white"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/point_scan_48px"
+            app:tint="@color/pink"
+            android:layout_gravity="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding"
+            android:background="@drawable/round_corners"
+            android:layout_gravity="start|bottom"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:paddingHorizontal="@dimen/padding">
+
+        <View
+                android:id="@+id/viewColorBox"
+                android:layout_width="@dimen/color_box"
+                android:layout_height="@dimen/color_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:paddingLeft="@dimen/padding"
+                android:textSize="@dimen/text_size"
+                android:id="@+id/tvColor"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/viewColorBox"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
