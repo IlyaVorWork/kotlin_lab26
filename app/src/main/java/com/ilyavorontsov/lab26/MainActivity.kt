@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             preview.surfaceProvider = pvPreview.getSurfaceProvider()
 
             val cameraSelector = CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build()
 
             val imageCapture = ImageCapture.Builder()
@@ -79,10 +79,13 @@ class MainActivity : AppCompatActivity() {
 
             ibCapture = findViewById(R.id.ibCapture)
             ibCapture.setOnClickListener {
-                val f = File(
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
-                    "photo.jpg"
+                val storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                val f = File.createTempFile(
+                    "JPEG_${System.currentTimeMillis()}",
+                    ".jpg",
+                    storageDir
                 )
+                Log.d("Camera", "File will be saved to: ${f.absolutePath}")
                 val outputFileOptions = ImageCapture.OutputFileOptions.Builder(f).build()
 
                 imageCapture.takePicture(
@@ -90,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                     ContextCompat.getMainExecutor(this),
                     object : ImageCapture.OnImageSavedCallback {
                         override fun onError(error: ImageCaptureException) {
-                            Log.d("NEW PHOTO", "error")
+                            Log.d("NEW PHOTO", error.message!!)
                         }
 
                         override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
